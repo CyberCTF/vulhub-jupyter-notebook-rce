@@ -1,0 +1,13 @@
+{
+  "title": "Jupyter Notebook Unauthenticated Access",
+  "description": "Jupyter Notebook 5.2.2 started with an empty token: the web UI and its API need no login, so a visitor opens a terminal or a notebook kernel and runs commands on the server.",
+  "question": "Use the unauthenticated Jupyter Notebook to run commands on the server and get a shell.",
+  "category": "WEB",
+  "difficulty": 1,
+  "evidence_kind": "SECRET",
+  "capabilities": [
+    "unauthenticated-access",
+    "remote-code-execution",
+    "misconfiguration"
+  ]
+}

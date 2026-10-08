@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://www.isoloom.com/schema/v1.json
+# Jupyter Notebook unauthenticated access (Vulhub, by phith0n and the Vulhub contributors) as an Isoloom spec:
+# Vulhub's jupyter/notebook-rce, vendored in app/: the published image
+# vulhub/jupyter-notebook:5.2.2 started with an empty token, as Vulhub's compose file does (build/jupyter/).
+# `isoloom generate`, then `isoloom run docker`.
+version: 1
+name: vulhub-jupyter-notebook-rce
+
+networks:
+  lab: { cidr: 10.60.235.0/24, internet: false }
+
+machines:
+  jupyter:
+    networks: { lab: 10 }
+    services: [{ port: 8888, name: web, http: true, publish: 8888 }]
+    resources: { cpus: 1, memory_mb: 512 }
+    docker:
+      build: build/jupyter
+
+checks:
+  - name: Jupyter answers
+    http: http://jupyter:8888/tree
+    wait: 120
+  - name: the API is Notebook 5.2.2 and needs no token
+    script: checks/api.sh
+    wait: 60
+
+message: |
+  Jupyter Notebook 5.2.2 answers at http://localhost:{{ machines.jupyter.services.0.publish }}/.
+  Nobody set a token.
