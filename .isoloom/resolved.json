@@ -94,7 +94,8 @@
       "vagrant": "needs `vm:` on jupyter",
       "proxmox": "needs `vm:` on jupyter",
       "cloud-vm": "needs `vm:` on jupyter",
-      "external": "needs `external:` on jupyter"
+      "external": "needs `external:` on jupyter",
+      "cloud-services": "left out by `targets:`"
     }
   },
   "checks": {
