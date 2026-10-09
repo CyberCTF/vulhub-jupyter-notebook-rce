@@ -4,10 +4,5 @@
   "question": "Use the unauthenticated Jupyter Notebook to run commands on the server and get a shell.",
   "category": "WEB",
   "difficulty": 1,
-  "evidence_kind": "SECRET",
-  "capabilities": [
-    "unauthenticated-access",
-    "remote-code-execution",
-    "misconfiguration"
-  ]
+  "evidence_kind": "SECRET"
 }
