@@ -1,0 +1,65 @@
+{
+  "objectives": [
+    {
+      "key": "main",
+      "title": "Read the flag",
+      "prompt": "Use the unauthenticated notebook server to run a command and read /ctf/flag.",
+      "check": {
+        "evidence": "SECRET",
+        "format": "FLAG{%s}"
+      },
+      "dev": "FLAG{dev-vulhub-jupyter-notebook-rce}",
+      "hints": [
+        "Jupyter Notebook 5.2.2 runs without a token here: anyone who reaches the port can open a notebook or a terminal.",
+        "The flag is at /ctf/flag, readable by the user the server runs as."
+      ],
+      "steps": [
+        {
+          "key": "version",
+          "title": "Identify the product",
+          "prompt": "Which version of Jupyter Notebook does the server run? (number only)",
+          "check": {
+            "answer_regex": "5\\.2\\.2"
+          }
+        },
+        {
+          "key": "protection",
+          "title": "Name the missing control",
+          "prompt": "What normally protects a Jupyter server from strangers? (one word)",
+          "check": {
+            "answer": [
+              "token",
+              "a token",
+              "password",
+              "authentication",
+              "authentication token"
+            ]
+          }
+        },
+        {
+          "key": "feature",
+          "title": "Find a shell",
+          "prompt": "Which notebook feature gives a shell without writing any Python?",
+          "check": {
+            "answer": [
+              "terminal",
+              "terminals",
+              "the terminal",
+              "new terminal"
+            ]
+          }
+        },
+        {
+          "key": "user",
+          "title": "Identify the user",
+          "prompt": "Which user runs the server?",
+          "check": {
+            "answer": [
+              "jovyan"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
